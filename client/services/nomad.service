@@ -1,0 +1,21 @@
+[Unit]
+Description="HashiCorp Nomad"
+Documentation=https://www.nomadproject.io/
+Requires=network-online.target
+After=network-online.target consul.service vault.service
+
+[Service]
+KillMode=process
+KillSignal=SIGINT
+LimitNOFILE=65536
+Restart=always
+StartLimitBurst=3
+StartLimitIntervalSec=10
+TasksMax=infinity
+EnvironmentFile=/TP-clustering/.env
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/nomad agent \
+  -config=/TP-clustering/config/nomad.hcl
+
+[Install]
+WantedBy=multi-user.target

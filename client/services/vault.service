@@ -1,0 +1,21 @@
+[Unit]
+Description="HashiCorp Vault"
+Documentation=https://www.vaultproject.io/
+Requires=network-online.target
+After=network-online.target consul.service
+
+[Service]
+KillMode=process
+KillSignal=SIGINT
+LimitNOFILE=65536
+Restart=always
+StartLimitBurst=3
+StartLimitIntervalSec=10
+TasksMax=infinity
+EnvironmentFile=/TP-clustering/.env
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/vault agent \
+  -config=/TP-clustering/config/vault.hcl
+
+[Install]
+WantedBy=multi-user.target
