@@ -1,4 +1,4 @@
-job "postgres" {
+job "mysql" {
   datacenters = ["dc1"]
   type = "service"
   update {
@@ -26,10 +26,10 @@ job "postgres" {
     ephemeral_disk {
       size = 300
     }
-    task "postgres" {
+    task "mysql" {
       driver = "docker"
       config {
-        image = "postgres:12"
+        image = "mysql:5.7"
 
         port_map {
           db = 5432
@@ -37,8 +37,7 @@ job "postgres" {
       }
 
       env {
-        "POSTGRES_USER" = "louis"
-        "POSTGRES_PASSWORD" = "vault"
+        "MYSQL_ROOT_PASSWORD" = "root"
       }
       resources {
         cpu    = 500
@@ -49,7 +48,7 @@ job "postgres" {
         }
       }
       service {
-        name = "postgres"
+        name = "mysql"
         tags = ["global", "db"]
         port = "db"
 
