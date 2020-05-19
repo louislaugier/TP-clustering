@@ -3,10 +3,10 @@ provider "nomad" {
     region = "global"
 }
 
-resource "nomad_job" "redis" {
-    jobspec = file("${path.module}/example.nomad")
+resource "nomad_job" "redis-cache" {
+    jobspec = file("${path.module}/redis-cache.nomad")
 }
 
 resource "nomad_job" "postgres" {
-    jobspec = file("${path.module}/example2.nomad")
+    jobspec = file("${path.module}/postgres.nomad")
 }

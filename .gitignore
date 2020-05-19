@@ -80,8 +80,6 @@ packer_cache/
 ## Terraform
 ############################################
 
-**/.terraform/*
-
 *.tfstate
 *.tfstate.*
 
