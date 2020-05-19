@@ -11,7 +11,7 @@
 #
 #     https://www.nomadproject.io/docs/job-specification/job.html
 #
-job "example2" {
+job "postgres" {
   # The "region" parameter specifies the region in which to execute the job.
   # If omitted, this inherits the default region name of "global".
   # region = "global"
@@ -267,9 +267,9 @@ job "example2" {
       }
 
       env {
-          "POSTGRES_USER" = "louis"
-          "POSTGRES_DB" = "wsf"
-          "POSTGRES_PASSWORD" = "vault"
+        "POSTGRES_USER" = "louis"
+        "POSTGRES_DB" = "wsf"
+        "POSTGRES_PASSWORD" = "vault"
       }
 
       # The "artifact" stanza instructs Nomad to download an artifact from a
