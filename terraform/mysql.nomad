@@ -32,7 +32,7 @@ job "mysql" {
         image = "mysql:5.7"
 
         port_map {
-          db = 5432
+          db = 3306
         }
       }
 
